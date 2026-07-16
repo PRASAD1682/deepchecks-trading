@@ -114,14 +114,6 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* ---------- Mock chart placeholder ---------- */
-        .mock-frame {
-            background-image:
-                linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-
         /* ---------- FAQ chevron ---------- */
         details > summary { list-style: none; cursor: pointer; }
         details > summary::-webkit-details-marker { display: none; }
@@ -247,15 +239,17 @@
                         <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accentBlue">✓</span><span>Volatility Exhaustion &amp; ATR Grids</span></li>
                     </ul>
                 </div>
-                <div class="mock-frame rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden">
+                <div class="rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden">
                     <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                     </div>
-                    <div class="h-40 flex items-center justify-center text-center px-4">
-                        <span class="text-xs text-gray-500 italic">[ Place Screenshot of Chart Setup Here ]</span>
-                    </div>
+                    <img
+                        src="screenshots/spt-v30-overlay.jpg"
+                        alt="SPT V30-F Overlay dashboard on a Bitcoin perpetual chart, showing structural walls, daily range levels, POC, and the institutional desk table"
+                        class="h-40 w-full object-cover object-top"
+                        loading="lazy" decoding="async" width="1891" height="610">
                 </div>
             </div>
 
@@ -274,15 +268,17 @@
                         <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accentGreen">✓</span><span>Statistical Z-Score Exhaustion Bands</span></li>
                     </ul>
                 </div>
-                <div class="mock-frame rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden">
+                <div class="rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden">
                     <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                     </div>
-                    <div class="h-40 flex items-center justify-center text-center px-4">
-                        <span class="text-xs text-gray-500 italic">[ Place Screenshot of Oscillator Setup Here ]</span>
-                    </div>
+                    <img
+                        src="screenshots/combo-rsi-octopus.jpg"
+                        alt="Combo RSI Octopus V20 oscillator pane, showing multi-timeframe RSI, Fisher and SMI lines, MACD histogram, and the liquidity/momentum dashboard"
+                        class="h-40 w-full object-cover object-top"
+                        loading="lazy" decoding="async" width="1891" height="390">
                 </div>
             </div>
         </div>
