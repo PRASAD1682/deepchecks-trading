@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DeepChecks Trading — institutional-style order flow, smart money structure, and multi-timeframe momentum tools for TradingView. SPT V30-F Overlay and Combo RSI Octopus V20.">
+    <meta name="description" content="DeepChecks Trading — two premium TradingView indicators (SPT V30-F Overlay and Combo RSI Octopus V20) combining trend, volume, order-flow and multi-timeframe metrics via secure invite-only access. Analytical tools only — no trading outcomes are guaranteed.">
     <meta name="theme-color" content="#090A0F">
-    <title>DeepChecks Trading | Institutional Intelligence, Retail Simplicity</title>
+    <link rel="canonical" href="https://deepchecks-trading.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DeepChecks Trading | Professional TradingView Tools for Smarter Market Analysis">
+    <meta property="og:description" content="Two premium TradingView indicators combining trend, volume, order-flow and multi-timeframe metrics via secure invite-only access. Analytical tools only — no trading outcomes are guaranteed.">
+    <meta property="og:url" content="https://deepchecks-trading.vercel.app/">
+    <meta property="og:image" content="https://deepchecks-trading.vercel.app/screenshots/spt-v30-overlay.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DeepChecks Trading | Professional TradingView Tools for Smarter Market Analysis">
+    <meta name="twitter:description" content="Two premium TradingView indicators combining trend, volume, order-flow and multi-timeframe metrics via secure invite-only access.">
+    <meta name="twitter:image" content="https://deepchecks-trading.vercel.app/screenshots/spt-v30-overlay.jpg">
+    <title>DeepChecks Trading | Professional TradingView Tools for Smarter Market Analysis</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -125,6 +135,12 @@
         /* Tabular numerals for price */
         .tabular-nums { font-variant-numeric: tabular-nums; }
 
+        /* ---------- Pricing region toggle ---------- */
+        .region-tab.active-region {
+            background: linear-gradient(180deg, #3B74FF 0%, #2151E0 100%);
+            color: white;
+        }
+
         ::selection { background: rgba(41,98,255,0.35); }
     </style>
 </head>
@@ -209,6 +225,19 @@
                 <span class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gray-600"></span>Forex</span>
                 <span class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gray-600"></span>Indian Equities</span>
                 <span class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gray-600"></span>Global Equities</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Strip -->
+    <section class="border-y border-borderMuted bg-white/[0.015]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <div class="reveal flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-medium text-gray-400">
+                <span class="flex items-center gap-1.5"><span class="text-accentGreen">✔</span>Secure Payment</span>
+                <span class="flex items-center gap-1.5"><span class="text-accentGreen">✔</span>Invite-only Delivery</span>
+                <span class="flex items-center gap-1.5"><span class="text-accentGreen">✔</span>Regular Updates</span>
+                <span class="flex items-center gap-1.5"><span class="text-accentGreen">✔</span>Email Support</span>
+                <span class="flex items-center gap-1.5"><span class="text-accentGreen">✔</span>Designed for Serious Traders</span>
             </div>
         </div>
     </section>
@@ -330,43 +359,160 @@
 
     <div class="max-w-7xl mx-auto px-4"><div class="divider-fade"></div></div>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         <div class="reveal text-center max-w-3xl mx-auto mb-16">
-            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-3 inline-block">Pricing</span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Simple, Transparent Pricing</h2>
-            <p class="text-gray-400 text-lg">Unlock maximum institutional precision immediately. Cancel anytime.</p>
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-3 inline-block">Getting Started</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">How It Works</h2>
+            <p class="text-gray-400 text-lg">From checkout to charts, in five simple steps.</p>
         </div>
 
-        <div class="reveal max-w-md mx-auto bg-gradient-to-b from-blue-500/25 via-blue-500/5 to-transparent p-[1px] rounded-3xl shadow-glowBlue">
-            <div class="bg-cardBg2 border border-borderMuted rounded-3xl p-8 sm:p-9 text-center relative">
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accentBlue to-blue-600 text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-blue-500/30">
-                    Most Popular
+        <div class="relative">
+            <div class="hidden sm:block absolute top-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-borderMuted to-transparent" aria-hidden="true"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-8 sm:gap-4">
+                <div class="reveal flex sm:flex-col items-center sm:items-center gap-4 sm:gap-3 sm:text-center">
+                    <span class="shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accentBlue to-blue-600 text-white font-bold flex items-center justify-center shadow-glowBlue relative z-10">1</span>
+                    <p class="text-sm text-gray-300 leading-relaxed">Choose your subscription plan</p>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-2 mt-2">DeepChecks Premium Suite</h3>
-                <p class="text-xs text-gray-400 mb-7">Includes Access to Both Indicators + Private Updates</p>
+                <div class="reveal flex sm:flex-col items-center sm:items-center gap-4 sm:gap-3 sm:text-center" style="transition-delay:0.05s">
+                    <span class="shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accentBlue to-blue-600 text-white font-bold flex items-center justify-center shadow-glowBlue relative z-10">2</span>
+                    <p class="text-sm text-gray-300 leading-relaxed">Complete your payment</p>
+                </div>
+                <div class="reveal flex sm:flex-col items-center sm:items-center gap-4 sm:gap-3 sm:text-center" style="transition-delay:0.1s">
+                    <span class="shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accentBlue to-blue-600 text-white font-bold flex items-center justify-center shadow-glowBlue relative z-10">3</span>
+                    <p class="text-sm text-gray-300 leading-relaxed">Share your TradingView username</p>
+                </div>
+                <div class="reveal flex sm:flex-col items-center sm:items-center gap-4 sm:gap-3 sm:text-center" style="transition-delay:0.15s">
+                    <span class="shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accentBlue to-blue-600 text-white font-bold flex items-center justify-center shadow-glowBlue relative z-10">4</span>
+                    <p class="text-sm text-gray-300 leading-relaxed">Our team grants Invite-only access</p>
+                </div>
+                <div class="reveal flex sm:flex-col items-center sm:items-center gap-4 sm:gap-3 sm:text-center" style="transition-delay:0.2s">
+                    <span class="shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-accentBlue to-blue-600 text-white font-bold flex items-center justify-center shadow-glowBlue relative z-10">5</span>
+                    <p class="text-sm text-gray-300 leading-relaxed">Open TradingView and start using your indicators</p>
+                </div>
+            </div>
+        </div>
 
-                <div class="mb-2 flex items-end justify-center gap-1">
-                    <span class="text-5xl font-extrabold text-white tabular-nums">$49</span>
+        <p class="reveal text-center text-xs text-gray-500 mt-12">Activation is normally completed as quickly as possible during support hours.</p>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4"><div class="divider-fade"></div></div>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div class="reveal text-center max-w-3xl mx-auto mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-3 inline-block">Pricing</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Simple, Transparent Pricing</h2>
+            <p class="text-gray-400 text-lg">Every plan includes both indicators. Cancel or renew anytime.</p>
+        </div>
+
+        <!-- Region Toggle -->
+        <div class="reveal flex justify-center mb-12">
+            <div class="inline-flex items-center gap-1 p-1 rounded-xl bg-white/[0.03] border border-borderMuted">
+                <button type="button" data-region="in" class="region-tab active-region px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors">🇮🇳 India</button>
+                <button type="button" data-region="intl" class="region-tab px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors text-gray-400">🌍 International</button>
+            </div>
+        </div>
+
+        <!-- India Pricing -->
+        <div id="region-in" class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+            <div class="reveal glass-card rounded-2xl p-8 text-center flex flex-col">
+                <h3 class="text-base font-semibold text-gray-300 mb-4">Monthly</h3>
+                <div class="mb-6 flex items-end justify-center gap-1">
+                    <span class="text-4xl font-extrabold text-white tabular-nums">₹799</span>
                     <span class="text-gray-400 text-sm pb-1">/ month</span>
                 </div>
-                <p class="text-xs text-gray-500 mb-7">Approx. ₹4,100/mo. Indian users can also pay using direct UPI via SuperProfile.</p>
-
-                <ul class="text-left space-y-4 text-sm text-gray-300 mb-8 border-t border-b border-borderMuted py-6">
-                    <li class="flex items-center gap-3"><span class="shrink-0">✨</span><span>Full Access to SPT V30-F Overlay</span></li>
-                    <li class="flex items-center gap-3"><span class="shrink-0">✨</span><span>Full Access to Combo RSI Octopus V20</span></li>
-                    <li class="flex items-center gap-3"><span class="shrink-0">📊</span><span>Works on Crypto, Forex, Indian &amp; Global Equities</span></li>
-                    <li class="flex items-center gap-3"><span class="shrink-0">⚡</span><span>24-hour Invite Access in TradingView</span></li>
+                <ul class="text-left space-y-3 text-sm text-gray-300 mb-8 border-t border-borderMuted pt-6 flex-1">
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Access to BOTH DeepChecks indicators</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Future indicator updates</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Email support</span></li>
                 </ul>
+                <a href="YOUR_SUPERPROFILE_LINK_HERE" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Pay via UPI</a>
+            </div>
 
-                <div class="flex flex-col gap-3">
-                    <a href="https://whop.com/tradepulsepro/tradepulse-pro-premium-bundle/" target="_blank" rel="noopener" class="btn btn-primary py-3.5 w-full">
-                        Buy with Whop (Global USD)
-                    </a>
-                    <a href="YOUR_SUPERPROFILE_LINK_HERE" target="_blank" rel="noopener" class="btn btn-secondary py-3.5 w-full">
-                        Pay via UPI (Indian Users)
-                    </a>
+            <div class="reveal bg-gradient-to-b from-blue-500/25 via-blue-500/5 to-transparent p-[1px] rounded-2xl shadow-glowBlue" style="transition-delay:0.05s">
+                <div class="bg-cardBg2 border border-borderMuted rounded-2xl p-8 text-center relative flex flex-col h-full">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accentBlue to-blue-600 text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-blue-500/30 whitespace-nowrap">⭐ Recommended</div>
+                    <h3 class="text-base font-semibold text-gray-300 mb-4 mt-2">Quarterly</h3>
+                    <div class="mb-6 flex items-end justify-center gap-1">
+                        <span class="text-4xl font-extrabold text-white tabular-nums">₹1,999</span>
+                        <span class="text-gray-400 text-sm pb-1">/ 3 months</span>
+                    </div>
+                    <ul class="text-left space-y-3 text-sm text-gray-300 mb-8 border-t border-borderMuted pt-6 flex-1">
+                        <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Access to BOTH DeepChecks indicators</span></li>
+                        <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Future indicator updates</span></li>
+                        <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
+                        <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Email support</span></li>
+                    </ul>
+                    <a href="YOUR_SUPERPROFILE_LINK_HERE" target="_blank" rel="noopener" class="btn btn-primary py-3 w-full">Pay via UPI</a>
                 </div>
+            </div>
+
+            <div class="reveal glass-card rounded-2xl p-8 text-center flex flex-col" style="transition-delay:0.1s">
+                <h3 class="text-base font-semibold text-gray-300 mb-4">Yearly</h3>
+                <div class="mb-6 flex items-end justify-center gap-1">
+                    <span class="text-4xl font-extrabold text-white tabular-nums">₹5,499</span>
+                    <span class="text-gray-400 text-sm pb-1">/ year</span>
+                </div>
+                <ul class="text-left space-y-3 text-sm text-gray-300 mb-8 border-t border-borderMuted pt-6 flex-1">
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Access to BOTH DeepChecks indicators</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Future indicator updates</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentBlue shrink-0">✓</span><span>Email support</span></li>
+                </ul>
+                <a href="YOUR_SUPERPROFILE_LINK_HERE" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Pay via UPI</a>
+            </div>
+        </div>
+
+        <!-- International Pricing -->
+        <div id="region-intl" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+            <div class="reveal glass-card rounded-2xl p-8 text-center flex flex-col">
+                <h3 class="text-base font-semibold text-gray-300 mb-4">Monthly</h3>
+                <div class="mb-6 flex items-end justify-center gap-1">
+                    <span class="text-4xl font-extrabold text-white tabular-nums">$14.99</span>
+                    <span class="text-gray-400 text-sm pb-1">/ month</span>
+                </div>
+                <ul class="text-left space-y-3 text-sm text-gray-300 mb-8 border-t border-borderMuted pt-6 flex-1">
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Access to BOTH DeepChecks indicators</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Future indicator updates</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Email support</span></li>
+                </ul>
+                <a href="https://whop.com/tradepulsepro/tradepulse-pro-premium-bundle/" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy with Whop</a>
+            </div>
+
+            <div class="reveal bg-gradient-to-b from-emerald-500/25 via-emerald-500/5 to-transparent p-[1px] rounded-2xl shadow-glowGreen" style="transition-delay:0.05s">
+                <div class="bg-cardBg2 border border-borderMuted rounded-2xl p-8 text-center relative flex flex-col h-full">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-accentGreen text-darkBg text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-emerald-500/30 whitespace-nowrap">⭐ Recommended</div>
+                    <h3 class="text-base font-semibold text-gray-300 mb-4 mt-2">Quarterly</h3>
+                    <div class="mb-6 flex items-end justify-center gap-1">
+                        <span class="text-4xl font-extrabold text-white tabular-nums">$39.99</span>
+                        <span class="text-gray-400 text-sm pb-1">/ 3 months</span>
+                    </div>
+                    <ul class="text-left space-y-3 text-sm text-gray-300 mb-8 border-t border-borderMuted pt-6 flex-1">
+                        <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Access to BOTH DeepChecks indicators</span></li>
+                        <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Future indicator updates</span></li>
+                        <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
+                        <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Email support</span></li>
+                    </ul>
+                    <a href="https://whop.com/tradepulsepro/tradepulse-pro-premium-bundle/" target="_blank" rel="noopener" class="btn btn-primary py-3 w-full">Buy with Whop</a>
+                </div>
+            </div>
+
+            <div class="reveal glass-card rounded-2xl p-8 text-center flex flex-col" style="transition-delay:0.1s">
+                <h3 class="text-base font-semibold text-gray-300 mb-4">Yearly</h3>
+                <div class="mb-6 flex items-end justify-center gap-1">
+                    <span class="text-4xl font-extrabold text-white tabular-nums">$129</span>
+                    <span class="text-gray-400 text-sm pb-1">/ year</span>
+                </div>
+                <ul class="text-left space-y-3 text-sm text-gray-300 mb-8 border-t border-borderMuted pt-6 flex-1">
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Access to BOTH DeepChecks indicators</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Future indicator updates</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
+                    <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Email support</span></li>
+                </ul>
+                <a href="https://whop.com/tradepulsepro/tradepulse-pro-premium-bundle/" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy with Whop</a>
             </div>
         </div>
     </section>
@@ -391,10 +537,42 @@
 
             <details class="glass-card rounded-xl px-6 py-1 group">
                 <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
-                    <span>What do I get with the Premium Suite?</span>
+                    <span>What do I get with a subscription?</span>
                     <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                 </summary>
-                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Full access to both SPT V30-F Overlay and Combo RSI Octopus V20, plus private updates and 24-hour invite access in TradingView.</p>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Access to both SPT V30-F Overlay and Combo RSI Octopus V20, future indicator updates, and secure TradingView invite-only access, plus email support.</p>
+            </details>
+
+            <details class="glass-card rounded-xl px-6 py-1 group">
+                <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
+                    <span>Do I receive source code?</span>
+                    <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </summary>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">No. Customers receive secure TradingView invite-only access — no Pine Script or source code is provided or transferred.</p>
+            </details>
+
+            <details class="glass-card rounded-xl px-6 py-1 group">
+                <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
+                    <span>How do I activate my indicators?</span>
+                    <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </summary>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">After payment, share your TradingView username with us. Our team then grants secure invite-only access directly on TradingView — see the "How It Works" section above for the full flow.</p>
+            </details>
+
+            <details class="glass-card rounded-xl px-6 py-1 group">
+                <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
+                    <span>How long does activation take?</span>
+                    <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </summary>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Activation is normally completed as quickly as possible during support hours, once your TradingView username is received.</p>
+            </details>
+
+            <details class="glass-card rounded-xl px-6 py-1 group">
+                <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
+                    <span>Which TradingView plan do I need?</span>
+                    <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </summary>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Both indicators are designed to work even on TradingView's Basic plan, which allows up to two indicators per chart — so you can run both DeepChecks tools together without needing a paid TradingView plan.</p>
             </details>
 
             <details class="glass-card rounded-xl px-6 py-1 group">
@@ -402,23 +580,31 @@
                     <span>How do I pay if I'm in India?</span>
                     <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                 </summary>
-                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">You can pay directly via UPI through SuperProfile, priced at approximately ₹4,100/month.</p>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Select the 🇮🇳 India tab in the Pricing section above to see INR pricing and pay via UPI, cards, or netbanking through our secure payment page.</p>
             </details>
 
             <details class="glass-card rounded-xl px-6 py-1 group">
                 <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
-                    <span>Can I cancel anytime?</span>
+                    <span>Can I renew my subscription?</span>
                     <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                 </summary>
-                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Yes — the Premium Suite is a monthly subscription and can be cancelled anytime.</p>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Yes — you can renew your subscription at any time, on the same plan or a different one.</p>
             </details>
 
             <details class="glass-card rounded-xl px-6 py-1 group">
                 <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
-                    <span>Is this financial advice?</span>
+                    <span>Can I cancel my subscription?</span>
                     <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                 </summary>
-                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">No. DeepChecks provides algorithmic analysis tools and educational scripts only. Financial trading involves high risk, and no direct investment advice is implied.</p>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">Yes — subscriptions can be cancelled anytime; access continues until the end of your current billing period.</p>
+            </details>
+
+            <details class="glass-card rounded-xl px-6 py-1 group">
+                <summary class="flex items-center justify-between gap-4 py-4 text-white font-medium">
+                    <span>Do the indicators guarantee profitable trades?</span>
+                    <svg class="chevron w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </summary>
+                <p class="faq-answer text-sm text-gray-400 leading-relaxed pb-5">No. Our indicators are analytical tools designed to help traders assess market bias using multiple integrated technical metrics. Trading always involves risk.</p>
             </details>
         </div>
     </section>
@@ -428,17 +614,47 @@
     <!-- Footer -->
     <footer class="border-t border-borderMuted bg-darkBg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-wrap items-center justify-center sm:justify-between gap-x-6 gap-y-2 text-xs text-gray-500 mb-6 pb-6 border-b border-borderMuted">
+                <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                    <a href="privacy.html" class="hover:text-gray-300 transition">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-gray-300 transition">Terms &amp; Conditions</a>
+                    <a href="refund.html" class="hover:text-gray-300 transition">Refund Policy</a>
+                    <a href="contact.html" class="hover:text-gray-300 transition">Contact Us</a>
+                </div>
+                <a href="mailto:deepchecks.support@gmail.com" class="hover:text-gray-300 transition">Support: deepchecks.support@gmail.com</a>
+            </div>
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
                 <p>&copy; 2026 DeepChecks Trading. All Rights Reserved.</p>
                 <a href="#main" class="hover:text-gray-300 transition">Back to top ↑</a>
             </div>
             <p class="max-w-2xl mx-auto sm:mx-0 mt-4 text-xs text-gray-600 leading-relaxed">
-                Disclaimer: Financial trading involves high risks. DeepChecks provides algorithmic analysis tools and educational scripts only. No direct investment advice is implied.
+                Disclaimer: Financial trading involves high risks. DeepChecks provides algorithmic market-analysis tools delivered via secure TradingView invite-only access. No direct investment advice is implied, and no trading outcomes are guaranteed.
             </p>
         </div>
     </footer>
 
     <script>
+        // Pricing region toggle (India / International)
+        (function () {
+            var tabs = document.querySelectorAll('.region-tab');
+            var panels = { in: document.getElementById('region-in'), intl: document.getElementById('region-intl') };
+            if (!tabs.length) return;
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    var region = tab.getAttribute('data-region');
+                    tabs.forEach(function (t) {
+                        t.classList.remove('active-region');
+                        t.classList.add('text-gray-400');
+                    });
+                    tab.classList.add('active-region');
+                    tab.classList.remove('text-gray-400');
+                    Object.keys(panels).forEach(function (key) {
+                        panels[key].classList.toggle('hidden', key !== region);
+                    });
+                });
+            });
+        })();
+
         // Mobile menu toggle
         (function () {
             var btn = document.getElementById('menuBtn');
