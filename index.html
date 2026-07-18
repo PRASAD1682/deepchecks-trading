@@ -140,12 +140,6 @@
         /* Tabular numerals for price */
         .tabular-nums { font-variant-numeric: tabular-nums; }
 
-        /* ---------- Pricing region toggle ---------- */
-        .region-tab.active-region {
-            background: linear-gradient(180deg, #3B74FF 0%, #2151E0 100%);
-            color: white;
-        }
-
         ::selection { background: rgba(41,98,255,0.35); }
     </style>
 </head>
@@ -411,14 +405,6 @@
             <p class="text-gray-400 text-lg">Every plan includes both indicators. Cancel or renew anytime.</p>
         </div>
 
-        <!-- Region Toggle -->
-        <div class="reveal flex justify-center mb-12">
-            <div class="inline-flex items-center gap-1 p-1 rounded-xl bg-white/[0.03] border border-borderMuted">
-                <button type="button" data-region="in" class="region-tab active-region px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors">🇮🇳 India</button>
-                <button type="button" data-region="intl" class="region-tab px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors text-gray-400">🌍 International</button>
-            </div>
-        </div>
-
         <!-- India Pricing -->
         <div id="region-in" class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
             <div class="reveal glass-card rounded-2xl p-8 text-center flex flex-col">
@@ -478,8 +464,15 @@
             <p class="text-xs text-gray-500 mt-2">TradingView access is normally provided within 24 hours.</p>
         </div>
 
+        <div class="max-w-5xl mx-auto"><div class="divider-fade my-16"></div></div>
+
         <!-- International Pricing -->
-        <div id="region-intl" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div class="reveal text-center max-w-3xl mx-auto mb-10">
+            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">🌍 International Plans (USD)</h3>
+            <p class="text-gray-400 text-base">For customers outside India. Secure subscription checkout powered by Whop.</p>
+        </div>
+
+        <div id="region-intl" class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
             <div class="reveal glass-card rounded-2xl p-8 text-center flex flex-col">
                 <h3 class="text-base font-semibold text-gray-300 mb-4">Monthly</h3>
                 <div class="mb-6 flex items-end justify-center gap-1">
@@ -492,12 +485,12 @@
                     <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
                     <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Email support</span></li>
                 </ul>
-                <a href="https://whop.com/tradepulsepro/tradepulse-pro-premium-bundle/" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy with Whop</a>
+                <a href="https://whop.com/checkout/plan_4tyEOcgLP92SV" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy via Whop</a>
             </div>
 
             <div class="reveal bg-gradient-to-b from-emerald-500/25 via-emerald-500/5 to-transparent p-[1px] rounded-2xl shadow-glowGreen" style="transition-delay:0.05s">
                 <div class="bg-cardBg2 border border-borderMuted rounded-2xl p-8 text-center relative flex flex-col h-full">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-accentGreen text-darkBg text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-emerald-500/30 whitespace-nowrap">⭐ Recommended</div>
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-accentGreen text-darkBg text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-emerald-500/30 whitespace-nowrap">Most Popular</div>
                     <h3 class="text-base font-semibold text-gray-300 mb-4 mt-2">Quarterly</h3>
                     <div class="mb-6 flex items-end justify-center gap-1">
                         <span class="text-4xl font-extrabold text-white tabular-nums">$39.99</span>
@@ -509,7 +502,7 @@
                         <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
                         <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Email support</span></li>
                     </ul>
-                    <a href="https://whop.com/tradepulsepro/tradepulse-pro-premium-bundle/" target="_blank" rel="noopener" class="btn btn-primary py-3 w-full">Buy with Whop</a>
+                    <a href="https://whop.com/checkout/plan_EoEgtBpVUPCu2" target="_blank" rel="noopener" class="btn btn-primary py-3 w-full">Buy via Whop</a>
                 </div>
             </div>
 
@@ -525,8 +518,16 @@
                     <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Secure TradingView Invite-only access</span></li>
                     <li class="flex items-start gap-2.5"><span class="text-accentGreen shrink-0">✓</span><span>Email support</span></li>
                 </ul>
-                <a href="https://whop.com/tradepulsepro/tradepulse-pro-premium-bundle/" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy with Whop</a>
+                <a href="https://whop.com/checkout/plan_NaJBGJTx0hxFU" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy via Whop</a>
             </div>
+        </div>
+
+        <div class="reveal max-w-2xl mx-auto mt-10 rounded-xl border border-borderMuted bg-white/[0.02] px-6 py-5 text-center">
+            <p class="text-sm text-gray-300 leading-relaxed">
+                After completing your Whop purchase, please email your <span class="text-white font-medium">TradingView username</span> and your <span class="text-white font-medium">Whop order confirmation</span> to
+                <a href="mailto:deepchecks.support@gmail.com" class="text-accentBlueSoft hover:underline">deepchecks.support@gmail.com</a>.
+            </p>
+            <p class="text-xs text-gray-500 mt-2">TradingView access is normally provided within 24 hours.</p>
         </div>
     </section>
 
@@ -647,27 +648,6 @@
     </footer>
 
     <script>
-        // Pricing region toggle (India / International)
-        (function () {
-            var tabs = document.querySelectorAll('.region-tab');
-            var panels = { in: document.getElementById('region-in'), intl: document.getElementById('region-intl') };
-            if (!tabs.length) return;
-            tabs.forEach(function (tab) {
-                tab.addEventListener('click', function () {
-                    var region = tab.getAttribute('data-region');
-                    tabs.forEach(function (t) {
-                        t.classList.remove('active-region');
-                        t.classList.add('text-gray-400');
-                    });
-                    tab.classList.add('active-region');
-                    tab.classList.remove('text-gray-400');
-                    Object.keys(panels).forEach(function (key) {
-                        panels[key].classList.toggle('hidden', key !== region);
-                    });
-                });
-            });
-        })();
-
         // Mobile menu toggle
         (function () {
             var btn = document.getElementById('menuBtn');
