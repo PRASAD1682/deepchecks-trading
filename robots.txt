@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deepchecks-trading.vercel.app/sitemap.xml
