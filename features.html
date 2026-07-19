@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Every metric inside SPT V30-F Overlay and Combo RSI Octopus V20 — trend, structure, derivatives, macro, volume, momentum, scoring, multi-timeframe, cross-exchange, and grid/DCA tools.">
+    <link rel="canonical" href="https://deepchecks-trading.vercel.app/features.html">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090A0F',
+                        cardBg: '#131622',
+                        cardBg2: '#161a29',
+                        accentBlue: '#2962FF',
+                        accentBlueSoft: '#5B8DEF',
+                        accentGreen: '#00E676',
+                        borderMuted: '#1E2230',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        glowBlue: '0 0 0 1px rgba(41,98,255,0.15), 0 8px 40px -8px rgba(41,98,255,0.35)',
+                        glowGreen: '0 0 0 1px rgba(0,230,118,0.15), 0 8px 40px -8px rgba(0,230,118,0.30)',
+                        card: '0 1px 0 0 rgba(255,255,255,0.03) inset, 0 20px 40px -20px rgba(0,0,0,0.6)',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        html { -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #090A0F;
+            color: #F3F4F6;
+            font-feature-settings: "cv11", "ss01";
+        }
+
+        /* ---------- Background texture ---------- */
+        .bg-grid {
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-size: 44px 44px;
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 20%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 20%, transparent 75%);
+        }
+
+        /* ---------- Section divider ---------- */
+        .divider-fade {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.09), transparent);
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            border-radius: 0.85rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn:active { transform: translateY(1px) scale(0.99); }
+        .btn-primary {
+            background: linear-gradient(180deg, #3B74FF 0%, #2151E0 100%);
+            color: white;
+            box-shadow: 0 1px 0 0 rgba(255,255,255,0.15) inset, 0 8px 24px -6px rgba(41,98,255,0.55);
+        }
+        .btn-primary:hover { box-shadow: 0 1px 0 0 rgba(255,255,255,0.2) inset, 0 12px 32px -6px rgba(41,98,255,0.7); transform: translateY(-2px); }
+        .btn-secondary {
+            background: rgba(255,255,255,0.02);
+            color: #D1D5DB;
+            border: 1px solid rgba(255,255,255,0.09);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
+        .btn:focus-visible {
+            outline: 2px solid #5B8DEF;
+            outline-offset: 2px;
+        }
+
+        /* ---------- Glass card ---------- */
+        .glass-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0) 40%), #131622;
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* ---------- Reveal-on-scroll ---------- */
+        .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ---------- Nav underline ---------- */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ""; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0;
+            background: #5B8DEF; transition: width 0.25s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ---------- FAQ chevron ---------- */
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details .chevron { transition: transform 0.25s ease; }
+        details[open] .chevron { transform: rotate(180deg); }
+        details[open] .faq-answer { animation: faqOpen 0.3s ease; }
+        @keyframes faqOpen { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Tabular numerals for price */
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+
+        /* ---------- Pricing region toggle ---------- */
+        .region-tab.active-region {
+            background: linear-gradient(180deg, #3B74FF 0%, #2151E0 100%);
+            color: white;
+        }
+
+        ::selection { background: rgba(41,98,255,0.35); }
+    </style>
+</head>
+<body class="antialiased" id="top">
+
+    <a href="index.html#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-accentBlue focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
+
+    <!-- Navbar -->
+    <nav class="border-b border-borderMuted bg-darkBg/70 backdrop-blur-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="logo-icon.png" alt="DeepChecks Trading logo" class="w-7 h-7 rounded-md" width="28" height="28" loading="eager" decoding="async">
+                <span class="text-xl font-bold tracking-tight text-white">DeepChecks<span class="text-accentBlue">.</span></span>
+            </a>
+            <a href="index.html#pricing" class="btn btn-primary px-4 py-2 text-sm">Get Access</a>
+        </div>
+    </nav>
+
+    <main>
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-24 pb-8 text-center">
+        <div class="reveal">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-3 inline-block">Complete Feature Breakdown</span>
+            <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">Every Metric, In One Place</h1>
+            <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">SPT V30-F Overlay and Combo RSI Octopus V20 combine trend, structure, derivatives, macro, volume, and momentum analysis into two indicators. Here's everything inside, organized by category.</p>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Trend Intelligence</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Advanced Trend Confirmation</h2>
+            <p class="text-gray-400 text-base">Beyond a single moving average — multiple independent trend systems cross-checking each other.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">↝</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Dual Supertrend (Fast + Slow)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Two ATR-based trend lines at different speeds — flags when both agree for stronger trend context.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⟁</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">T3 Dual Crossover Engine</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A smoother, less noisy alternative to standard EMA crossovers, confirmed by directional-movement agreement.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">▧</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Advanced Bollinger Band Regime</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Classifies the market as Trending or Sideways based on real-time volatility expansion and contraction.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.12s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⇄</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">EMA 9/21 Crossover Module</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A classic, fully configurable crossover system for traders who want a simple reference alongside the rest.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.16s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">␥</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Chandelier Exit</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A volatility-adaptive trailing reference line based on ATR, for risk-management context.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Smart Money &amp; Structure</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Market Structure Mapping</h2>
+            <p class="text-gray-400 text-base">Institutional-style structural tools drawn directly on your chart.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⛊</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">KADAK Hard Support/Resistance Walls</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Flags high-volume rejection candles located at statistical price extremes.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">◉</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">POC Magnet Line</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Approximates the price level with the most concentrated recent trading activity.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">▬</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Daily Range Levels</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Automatic daily high, low, and midpoint with premium/discount zone labeling.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.12s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⇡</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Liquidity Sweep Detector</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Flags stop-hunt-style price action at recent swing highs and lows.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.16s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">▢</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Fair Value Gaps (FVG)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Automatically draws three-candle price imbalance zones on your chart.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.2s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">▣</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Institutional Order Blocks</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Marks candles preceding high-volume directional moves, with a volume-confirmation filter.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Derivatives Intelligence</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Open Interest &amp; Funding</h2>
+            <p class="text-gray-400 text-base">Real derivatives-market data, not price-derived proxies.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">Ѻ</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">OI Stage Classification</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Classifies live open interest and price action into standard positioning states (Long Buildup, Short Covering, etc.), with burst detection.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">%</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-gray-300 bg-white/10 border border-white/10 whitespace-nowrap">Both</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Funding Rate Sentiment</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Classifies funding rate extremity into readable tiers, from Extreme to Neutral.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⇵</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Price/OI Divergence</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Flags whether a price move is backed by fresh positioning or by position unwinding.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Macro &amp; Sentiment</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Market Health Dashboard</h2>
+            <p class="text-gray-400 text-base">Cross-asset and sentiment context, without switching charts.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">₿</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">BTC Dominance &amp; DXY Trend</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Tracks Bitcoin's market-cap share and the US Dollar Index trend as background macro context.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">☯</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Market Cycle (SMA200)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Classifies the broader cycle as Markup or Markdown for a chosen reference pair.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">◔</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Fear &amp; Greed Zone</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Displays sentiment-extremity context alongside your technical read.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Volume Intelligence</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Order-Flow &amp; Volume Tools</h2>
+            <p class="text-gray-400 text-base">Multiple independent ways to read buying and selling pressure.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⇕</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Net Delta &amp; Whale Flag</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Surfaces unusually large one-sided volume bars relative to their own recent average.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⊞</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">RVOL (Relative Volume)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Compares current activity to its rolling average — a quick gauge of unusual participation.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">↯</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Cash Flow Divergence</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Flags when price extremes aren't confirmed by money-flow and volume-delta measures.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Momentum Suite</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Multi-Oscillator Confirmation</h2>
+            <p class="text-gray-400 text-base">A full stack of momentum tools beyond a single RSI line.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">五</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Multi-Timeframe RSI</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">See RSI on your current chart plus 5m, 15m, 1H, and 4H — five timeframes in one pane.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">↕</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Classic &amp; Hidden RSI Divergence</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Detects price/momentum disagreement with configurable noise filters and visual pivot verification.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">ψ</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Fisher Transform (Fast + Slow)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A statistically sharpened momentum reading, run at two speeds for a fuller picture.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.12s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">∿</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">SMI (Stochastic Momentum)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A smoother alternative to raw stochastic, reducing whipsaw crossovers.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.16s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⌇</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">MACD (Choppy-Aware)</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Classic MACD histogram that automatically mutes itself during genuinely sideways conditions.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.2s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⧗</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Choppiness Index</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">An explicit trending-vs-sideways reading, independent of any directional filter.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Market Bias &amp; Scoring</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Transparent Weighted Scoring</h2>
+            <p class="text-gray-400 text-base">Every composite score shows exactly what's behind it — no black boxes.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">Σ</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Confluence Bias Engine</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Combines 10 independently weighted signals — trend, momentum, volume, derivatives, and macro — into one bias reading.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">◎</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Bias Master Score</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A quick-glance weighted long/short percentage from three core trend and participation signals.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⚡</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Signal Engine v3</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Granular entry/exit point scoring with a built-in position-state tracker, so labels don't repeat mid-position.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.12s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">✓</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">BUY/SELL Confluence Labels</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Chart labels that only appear when five independent signal families align.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.16s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">Σ</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Composite Signal Score</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Combines derivatives, volume-flow, and statistical-extremity signals into one final bias footer.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.2s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⚠</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">Combo RSI Octopus</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Liquidation Risk Tier</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A four-tier read (Cascade/High/Moderate/Low) combining statistical extremity, volume, and range expansion.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.24s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">σ</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-gray-300 bg-white/10 border border-white/10 whitespace-nowrap">Both</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Z-Score</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A statistically grounded measure of how far price has stretched from its recent average.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Multi-Timeframe Intelligence</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Timeframe Alignment</h2>
+            <p class="text-gray-400 text-base">Know when the bigger picture agrees with your current chart.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">▤</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">MTF Confluence Engine</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Checks whether the 4-hour, 1-hour, and your current chart's trend all agree, and scores the strength of that alignment.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Cross-Exchange Intelligence</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Multi-Venue Comparison</h2>
+            <p class="text-gray-400 text-base">See how the same asset is behaving across three major exchanges at once.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">⇄</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Exchange Dashboard</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Live price spread, aggregated volume, and cross-exchange volume ratios across Binance, OKX, and Bybit.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">→</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Price Lead Detection</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Tracks which exchange has recently been moving first, over a rolling window.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Grid &amp; DCA Strategy Tools</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Strategy Planning Panel</h2>
+            <p class="text-gray-400 text-base">Regime-aware planning context for grid and DCA-style approaches — not an automated trading bot.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">▦</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">AI Grid Counsel Panel</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Reads whether current conditions look range-bound or trending, and suggests a grid range, spacing, and count.</p>
+            </div>
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">◈</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Multi-Timeframe DCA Bias</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Combines 4H, 1H, and 15M alignment into a DCA-style directional suggestion.</p>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 border-b border-borderMuted">
+        <div class="reveal max-w-2xl mb-10">
+            <span class="text-xs font-semibold tracking-widest text-accentBlueSoft uppercase mb-2 inline-block">Alerts</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">Stay Notified</h2>
+            <p class="text-gray-400 text-base">Get notified without watching the chart continuously.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+                <div class="flex items-start justify-between gap-2 mb-4">
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft text-base">🔔</div>
+                    <span class="text-[10px] font-semibold px-2 py-1 rounded-full text-blue-300 bg-blue-500/10 border border-blue-500/20 whitespace-nowrap">SPT V30-F</span>
+                </div>
+                <h3 class="text-white font-semibold mb-1.5">Whale/Institutional Alerts</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Confirmed-bar-gated alert conditions tied to unusual large-volume activity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+        <a href="index.html#pricing" class="btn btn-primary px-8 py-4 text-base inline-flex">See Pricing &amp; Get Access</a>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-borderMuted bg-darkBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-wrap items-center justify-center sm:justify-between gap-x-6 gap-y-2 text-xs text-gray-500 mb-6 pb-6 border-b border-borderMuted">
+                <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                    <a href="features.html" class="hover:text-gray-300 transition">All Features</a>
+                    <a href="privacy.html" class="hover:text-gray-300 transition">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-gray-300 transition">Terms &amp; Conditions</a>
+                    <a href="refund.html" class="hover:text-gray-300 transition">Refund Policy</a>
+                    <a href="contact.html" class="hover:text-gray-300 transition">Contact Us</a>
+                </div>
+                <a href="mailto:deepchecks.support@gmail.com" class="hover:text-gray-300 transition">Support: deepchecks.support@gmail.com</a>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+                <p class="flex items-center gap-2"><img src="logo-icon.png" alt="DeepChecks Trading logo" class="w-5 h-5 rounded" width="20" height="20" loading="lazy" decoding="async">&copy; 2026 DeepChecks Trading. All Rights Reserved.</p>
+                <a href="#top" class="hover:text-gray-300 transition">Back to top &uarr;</a>
+            </div>
+            <p class="max-w-2xl mx-auto sm:mx-0 mt-4 text-xs text-gray-600 leading-relaxed">
+                Disclaimer: Financial trading involves high risks. DeepChecks provides algorithmic market-analysis tools delivered via secure TradingView invite-only access. No direct investment advice is implied, and no trading outcomes are guaranteed.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var items = document.querySelectorAll('.reveal');
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+            items.forEach(function (el) { observer.observe(el); });
+        })();
+    </script>
+</body>
+</html>
