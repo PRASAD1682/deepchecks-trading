@@ -141,7 +141,79 @@
         .tabular-nums { font-variant-numeric: tabular-nums; }
 
         ::selection { background: rgba(41,98,255,0.35); }
+
+        /* ---------- Production polish additions ---------- */
+
+        /* Subtle idle float for the two indicator dashboard screenshots (premium, not flashy) */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .float-frame { animation: floatSlow 6s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .float-frame { animation: none; } }
+
+        /* Deeper, color-matched glow on card hover (feature tiles, gallery frames) */
+        .hover-lift { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s ease; }
+        .hover-lift:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -20px rgba(0,0,0,0.65); }
+
+        /* Gentle pulse for pricing ribbons (Recommended / Most Popular) */
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(41,98,255,0.35); }
+            50% { box-shadow: 0 0 0 6px rgba(41,98,255,0); }
+        }
+        .badge-pulse { animation: badgePulse 2.6s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .badge-pulse { animation: none; } }
+
+        /* Pricing card elevation */
+        .price-elevated { box-shadow: 0 30px 60px -25px rgba(41,98,255,0.35); }
+
+        /* Gallery lightbox trigger affordance */
+        .gallery-frame { cursor: zoom-in; }
+        .gallery-frame:hover img { filter: brightness(1.04); }
+        .gallery-frame img { transition: filter 0.3s ease; }
+
+        /* Lightbox overlay */
+        #lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(5,5,10,0.92); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 1.5rem; }
+        #lightbox.open { display: flex; }
+        #lightbox img { max-width: min(1200px, 92vw); max-height: 88vh; border-radius: 0.75rem; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.7); }
+        #lightbox-close { position: absolute; top: 1.25rem; right: 1.25rem; width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease; }
+        #lightbox-close:hover { background: rgba(255,255,255,0.16); }
+        #lightbox-close:focus-visible, .gallery-frame:focus-visible { outline: 2px solid #5B8DEF; outline-offset: 3px; }
+
+        /* Visible focus ring for all interactive elements (accessibility) */
+        a:focus-visible, button:focus-visible, summary:focus-visible {
+            outline: 2px solid #5B8DEF; outline-offset: 2px; border-radius: 2px;
+        }
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "DeepChecks Trading",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "TradingView",
+        "description": "Two premium TradingView indicators (SPT V30-F Overlay and Combo RSI Octopus V20) combining trend, volume, order-flow, and multi-timeframe metrics via secure invite-only access. Analytical tools only — no trading outcomes are guaranteed.",
+        "url": "https://deepchecks-trading.vercel.app/",
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "999",
+                "priceCurrency": "INR",
+                "priceValidUntil": "2027-12-31",
+                "url": "https://deepchecks-trading.vercel.app/#pricing",
+                "category": "subscription"
+            },
+            {
+                "@type": "Offer",
+                "price": "14.99",
+                "priceCurrency": "USD",
+                "priceValidUntil": "2027-12-31",
+                "url": "https://deepchecks-trading.vercel.app/#pricing",
+                "category": "subscription"
+            }
+        ]
+    }
+    </script>
 </head>
 <body class="antialiased">
 
@@ -241,6 +313,32 @@
         </div>
     </section>
 
+    <!-- Stats Strip -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="reveal grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6 text-center">
+            <div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-white tabular-nums">46+</div>
+                <div class="text-xs text-gray-500 mt-1">Metrics</div>
+            </div>
+            <div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-white tabular-nums">2</div>
+                <div class="text-xs text-gray-500 mt-1">Professional Indicators</div>
+            </div>
+            <div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-white">MTF</div>
+                <div class="text-xs text-gray-500 mt-1">Multi-Timeframe Analysis</div>
+            </div>
+            <div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-white">AI</div>
+                <div class="text-xs text-gray-500 mt-1">Assisted Bias Scoring</div>
+            </div>
+            <div class="col-span-2 sm:col-span-1">
+                <div class="text-2xl sm:text-3xl font-extrabold text-white">Live</div>
+                <div class="text-xs text-gray-500 mt-1">Real-Time Dashboard</div>
+            </div>
+        </div>
+    </section>
+
     <div class="max-w-7xl mx-auto px-4"><div class="divider-fade"></div></div>
 
     <!-- Indicators Showcase Section -->
@@ -269,7 +367,7 @@
                         <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accentBlue">✓</span><span>Grid &amp; DCA Strategy Planning Panel</span></li>
                     </ul>
                 </div>
-                <div class="rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden">
+                <div class="rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden float-frame hover-lift">
                     <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
@@ -300,7 +398,7 @@
                         <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accentGreen">✓</span><span>Classic &amp; Hidden RSI Divergence Engine</span></li>
                     </ul>
                 </div>
-                <div class="rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden">
+                <div class="rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden float-frame hover-lift">
                     <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
                         <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
@@ -327,47 +425,47 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors">
                 <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft mb-4 text-base">◆</div>
                 <h3 class="text-white font-semibold mb-1.5">Institutional Order Flow</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Live delta and volume-flow analysis mapped directly onto price.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.04s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.04s">
                 <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-accentGreen mb-4 text-base">◇</div>
                 <h3 class="text-white font-semibold mb-1.5">Smart Money Structure</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Structural levels and volatility constraints for context-aware charting.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.08s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.08s">
                 <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft mb-4 text-base">▤</div>
                 <h3 class="text-white font-semibold mb-1.5">Multi-Timeframe Confluence</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Cross-timeframe matrix alignment for a broader read on momentum.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.12s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.12s">
                 <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-accentGreen mb-4 text-base">≋</div>
                 <h3 class="text-white font-semibold mb-1.5">CVD / CMF / OBV Streams</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Integrated cumulative volume delta and money-flow indicators.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.16s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.16s">
                 <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft mb-4 text-base">σ</div>
                 <h3 class="text-white font-semibold mb-1.5">Statistical Z-Score Bands</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Exhaustion bands built on statistical deviation, not guesswork.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.2s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.2s">
                 <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-accentGreen mb-4 text-base">⚠</div>
                 <h3 class="text-white font-semibold mb-1.5">Early Reversal Warnings</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Trend-flip and reversal-risk flags across both indicators.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.24s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.24s">
                 <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft mb-4 text-base">⇄</div>
                 <h3 class="text-white font-semibold mb-1.5">Cross-Exchange Dashboard</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Compares price, volume, and momentum across Binance, OKX, and Bybit in one panel.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.28s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.28s">
                 <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-accentGreen mb-4 text-base">◈</div>
                 <h3 class="text-white font-semibold mb-1.5">Liquidation Risk Tier</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Four-tier volatility-stress read combining statistical extremity, volume, and range.</p>
             </div>
-            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 transition-colors" style="transition-delay:0.32s">
+            <div class="reveal glass-card rounded-xl p-6 hover:border-white/15 hover-lift transition-colors" style="transition-delay:0.32s">
                 <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-accentBlueSoft mb-4 text-base">▦</div>
                 <h3 class="text-white font-semibold mb-1.5">Grid &amp; DCA Strategy Panel</h3>
                 <p class="text-sm text-gray-400 leading-relaxed">Reads market regime and suggests a grid range, spacing, and multi-timeframe DCA bias.</p>
@@ -376,6 +474,59 @@
 
         <div class="reveal text-center mt-12">
             <a href="features.html" class="text-sm font-medium text-accentBlueSoft hover:underline">See the full feature breakdown →</a>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4"><div class="divider-fade"></div></div>
+
+    <!-- Screenshot Gallery Section -->
+    <section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div class="reveal text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-semibold tracking-widest text-accentGreen uppercase mb-3 inline-block">Live Charts</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">See It On Real Markets</h2>
+            <p class="text-gray-400 text-lg">Actual chart captures — crypto futures and Indian equities, side by side.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="reveal rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden gallery-frame hover-lift" role="button" tabindex="0" aria-label="Enlarge: Nifty Bank Index chart" data-full="screenshots/gallery-banknifty.jpg" data-caption="Nifty Bank Index · NSE">
+                <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="ml-2 text-xs text-gray-500">Nifty Bank Index &middot; NSE</span>
+                </div>
+                <img src="screenshots/gallery-banknifty.jpg" alt="DeepChecks indicators running on the Nifty Bank Index, showing the full SPT V30-F overlay and Combo RSI Octopus dashboard on an Indian equity index" class="w-full h-auto" loading="lazy" decoding="async" width="1600" height="846">
+            </div>
+            <div class="reveal rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden gallery-frame hover-lift" style="transition-delay:0.05s" role="button" tabindex="0" aria-label="Enlarge: BTC/USDT perpetual chart" data-full="screenshots/gallery-btcusdt.jpg" data-caption="BTC/USDT Perpetual · Binance">
+                <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="ml-2 text-xs text-gray-500">BTC/USDT Perpetual &middot; Binance</span>
+                </div>
+                <img src="screenshots/gallery-btcusdt.jpg" alt="DeepChecks indicators running on a Bitcoin perpetual futures chart, showing structural walls, daily levels, and the full dashboard stack" class="w-full h-auto" loading="lazy" decoding="async" width="1600" height="846">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="reveal rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden gallery-frame hover-lift" style="transition-delay:0.1s" role="button" tabindex="0" aria-label="Enlarge: Cross-Exchange Dashboard detail" data-full="screenshots/gallery-exchange-detail.jpg" data-caption="Cross-Exchange Dashboard — Detail">
+                <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="ml-2 text-xs text-gray-500">Cross-Exchange Dashboard — Detail</span>
+                </div>
+                <img src="screenshots/gallery-exchange-detail.jpg" alt="Close-up of the Cross-Exchange Dashboard comparing price, volume, and lead detection across Binance, OKX, and Bybit" class="w-full h-auto" loading="lazy" decoding="async" width="550" height="509">
+            </div>
+            <div class="reveal rounded-xl border border-borderMuted bg-darkBg/60 overflow-hidden gallery-frame hover-lift" style="transition-delay:0.15s" role="button" tabindex="0" aria-label="Enlarge: SPT V30-F dashboard detail" data-full="screenshots/gallery-dashboard-detail.jpg" data-caption="SPT V30-F Dashboard — Detail">
+                <div class="flex items-center gap-1.5 px-3 py-2 border-b border-borderMuted bg-white/[0.02]">
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
+                    <span class="ml-2 text-xs text-gray-500">SPT V30-F Dashboard — Detail</span>
+                </div>
+                <img src="screenshots/gallery-dashboard-detail.jpg" alt="Close-up of the SPT V30-F institutional desk dashboard, showing trend flip status, OI stage, and confluence bias readouts" class="w-full h-auto max-h-[420px] object-cover object-top" loading="lazy" decoding="async" width="477" height="920">
+            </div>
         </div>
     </section>
 
@@ -445,9 +596,9 @@
                 <a href="https://rzp.io/rzp/CHsAQDaO" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy Now</a>
             </div>
 
-            <div class="reveal bg-gradient-to-b from-blue-500/25 via-blue-500/5 to-transparent p-[1px] rounded-2xl shadow-glowBlue" style="transition-delay:0.05s">
+            <div class="reveal bg-gradient-to-b from-blue-500/25 via-blue-500/5 to-transparent p-[1px] rounded-2xl shadow-glowBlue price-elevated hover-lift" style="transition-delay:0.05s">
                 <div class="bg-cardBg2 border border-borderMuted rounded-2xl p-8 text-center relative flex flex-col h-full">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accentBlue to-blue-600 text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-blue-500/30 whitespace-nowrap">⭐ Recommended</div>
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accentBlue to-blue-600 text-white text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-blue-500/30 whitespace-nowrap badge-pulse">⭐ Recommended</div>
                     <h3 class="text-base font-semibold text-gray-300 mb-4 mt-2">Quarterly</h3>
                     <div class="mb-6 flex items-end justify-center gap-1">
                         <span class="text-4xl font-extrabold text-white tabular-nums">₹1,999</span>
@@ -511,9 +662,9 @@
                 <a href="https://whop.com/checkout/plan_4tyEOcgLP92SV" target="_blank" rel="noopener" class="btn btn-secondary py-3 w-full">Buy via Whop</a>
             </div>
 
-            <div class="reveal bg-gradient-to-b from-emerald-500/25 via-emerald-500/5 to-transparent p-[1px] rounded-2xl shadow-glowGreen" style="transition-delay:0.05s">
+            <div class="reveal bg-gradient-to-b from-emerald-500/25 via-emerald-500/5 to-transparent p-[1px] rounded-2xl shadow-glowGreen price-elevated hover-lift" style="transition-delay:0.05s">
                 <div class="bg-cardBg2 border border-borderMuted rounded-2xl p-8 text-center relative flex flex-col h-full">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-accentGreen text-darkBg text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-emerald-500/30 whitespace-nowrap">Most Popular</div>
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-accentGreen text-darkBg text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg shadow-emerald-500/30 whitespace-nowrap badge-pulse">Most Popular</div>
                     <h3 class="text-base font-semibold text-gray-300 mb-4 mt-2">Quarterly</h3>
                     <div class="mb-6 flex items-end justify-center gap-1">
                         <span class="text-4xl font-extrabold text-white tabular-nums">$39.99</span>
@@ -648,6 +799,12 @@
 
     </main>
 
+    <!-- Lightbox (gallery) -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot">
+        <button id="lightbox-close" aria-label="Close enlarged image">✕</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
     <!-- Footer -->
     <footer class="border-t border-borderMuted bg-darkBg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -718,6 +875,47 @@
                 });
             }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
             items.forEach(function (el) { observer.observe(el); });
+        })();
+
+        // Gallery lightbox
+        (function () {
+            var frames = document.querySelectorAll('.gallery-frame');
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightbox-img');
+            var closeBtn = document.getElementById('lightbox-close');
+            if (!frames.length || !lightbox) return;
+
+            var lastFocused = null;
+
+            function openLightbox(frame) {
+                var full = frame.getAttribute('data-full');
+                var caption = frame.getAttribute('data-caption') || '';
+                if (!full) return;
+                lastFocused = document.activeElement;
+                lightboxImg.src = full;
+                lightboxImg.alt = caption;
+                lightbox.classList.add('open');
+                closeBtn.focus();
+                document.body.style.overflow = 'hidden';
+            }
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                lightboxImg.src = '';
+                document.body.style.overflow = '';
+                if (lastFocused) lastFocused.focus();
+            }
+
+            frames.forEach(function (frame) {
+                frame.addEventListener('click', function () { openLightbox(frame); });
+                frame.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(frame); }
+                });
+            });
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+            });
         })();
     </script>
 
